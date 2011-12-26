@@ -1,0 +1,10 @@
+name: GMode
+main: radicalpi.gmode.GMode
+version: 0.1
+author: RadicalPi
+description: Allows users to select their own GameMode, PermissionsEx compatible
+
+commands:
+   mode:
+      description: Select GameMode
+      usage: /<command> (creative|survival)

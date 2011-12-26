@@ -1,0 +1,10 @@
+name: ADGame
+main: radicalpi.adgame.ADGame
+version: 0.1
+author: RadicalPi
+description: Provides backend services to the A/D game arena
+
+commands:
+    ad:
+        description: Control participation in A/D game
+        usage: /<command> (subcommand)

@@ -1,0 +1,10 @@
+name: ShutdownWarning
+main: radicalpi.shutdownwarning.ShutdownWarning
+version: 0.1
+author: RadicalPi
+description: Provides an automated shutdown system for the server
+
+commands:
+   start_shutdown:
+      description: Starts a shutdown
+      usage: /<command> [time]
