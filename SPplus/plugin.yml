@@ -1,0 +1,10 @@
+name: SPplus
+main: radicalpi.spplus.SPplus
+version: 0.1
+author: RadicalPi
+description: Enhancements to the SpleefExtreme plugin, mainly clears creative mode
+
+commands:
+   sp:
+      description: Spleef Front-end
+      usage: /<command> (join|start|leave)
