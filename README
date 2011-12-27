@@ -1,0 +1,26 @@
+iThompson's Minecraft plugins
+======================================
+
+These are a series of plugins for [Bukkit](http://bukkit.org) which I use in my
+Minecraft server. Each have been written by me.
+
+ADGame
+------
+An in-progress plugin to operate and manage a small Attack/Defend minigame some
+members of the server have built.
+
+GMode
+-----
+A small plugin to allow players to switch themselves between Creative and Survival
+modes on the fly.
+
+SPPlus
+------
+A front-end to [SpleefExtreme](http://dev.bukkit.org/server-mods/spleefextreme/)
+specialized for the two Spleef arenas in my world. Requires SpleefExtreme to be
+installed, and accesses some private functions in it.
+
+ShutdownWarning
+---------------
+Announces a shutdown to all players on the server, gives them time to finish up, then
+kicks with a relevant message and shuts down the server.
