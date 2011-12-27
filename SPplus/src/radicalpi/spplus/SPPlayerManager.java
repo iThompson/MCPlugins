@@ -17,6 +17,11 @@ public class SPPlayerManager {
 		{
 			GameMode mode = player.getGameMode();
 			player.setGameMode(GameMode.SURVIVAL);
+			if (player.getGameMode() != GameMode.SURVIVAL){
+				// Someone else has locked the GameMode, we should abort
+				player.sendMessage(ChatColor.RED + "You are already playing something else");
+				return false;
+			}
 			_players.put(player, mode);
 			player.sendMessage(ChatColor.RED + "Spleef mode initialized");
 		} else {
