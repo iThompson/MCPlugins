@@ -7,4 +7,7 @@ description: Enhancements to the SpleefExtreme plugin, mainly clears creative mo
 commands:
    sp:
       description: Spleef Front-end
-      usage: /<command> (join|start|leave)
+      usage: /<command> (join|start|leave|cancel)
+   sp2:
+      description: Spleef for second arena
+      usage: /<command> (join|start|leave|cancel)

@@ -20,15 +20,15 @@ public class PlayerGameListener extends PlayerListener {
 	{
 		Player player = event.getPlayer();
 		
-		if (SPPlayerManager.isPlayingGame(player))
+		if (SPPlayerManager.isPlayingGame(player) && !event.isCancelled())
 		{
 			// Check if this is the entry teleport
-			if (event.getTo().equals(GameManager.getGame("game").getTp("join")))
+			if (event.getTo().equals(GameManager.getGame("game").getTp("join")) || event.getTo().equals(GameManager.getGame("game2").getTp("join")))
 			{
 				return;
 			}
 			
-			SPPlayerManager.endPlayerGame(player);
+			SPPlayerManager.endPlayerGame(player, SPPlayerManager.getCurrentGame(player));
 		}
 	}
 	

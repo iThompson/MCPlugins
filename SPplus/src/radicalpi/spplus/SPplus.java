@@ -24,13 +24,15 @@ public class SPplus extends JavaPlugin {
 
 	@Override
 	public void onDisable() {
-		SPPlayerManager.restoreAllPlayers();
-
+		SPPlayerManager.restoreAllPlayers(1);
+		SPPlayerManager.restoreAllPlayers(2);
+		
+		log.info("SPPlus disabled");
 	}
 
 	@Override
 	public void onEnable() {
-		log.info("Yo dawg, I heard you like Spleef plugins.");
+		log.info("SPPlus enabled");
 		
 		_GameListener = new PlayerGameListener();
 		
@@ -42,6 +44,7 @@ public class SPplus extends JavaPlugin {
 		pm.registerEvent(Event.Type.PLAYER_GAME_MODE_CHANGE, _GameListener, Event.Priority.Normal, this);
 		
 		GameManager.getGame("game").getArena().saveState();
+		GameManager.getGame("game2").getArena().saveState();
 
 	}
 	
@@ -64,6 +67,17 @@ public class SPplus extends JavaPlugin {
 		
 		if (args.length >= 1)
 		{
+			String gameID = null;
+			int gameNum = 0;
+			if (command.getName().equalsIgnoreCase("sp2"))
+			{
+				gameID = "game2";
+				gameNum = 2;
+			} else {
+				gameID = "game";
+				gameNum = 1;
+			}
+			
 			if (player == null)
 			{
 				sender.sendMessage("[" + _pdfFile.getName() + "] This command cannot be run from console");
@@ -79,14 +93,14 @@ public class SPplus extends JavaPlugin {
 					player.sendMessage(ChatColor.RED + "You appear to already be playing");
 					return true;
 				}
-				if (SPPlayerManager.isRunningGame())
+				if (SPPlayerManager.isRunningGame(gameNum))
 				{
 					player.sendMessage(ChatColor.RED + "The Spleef game is currently running");
 					return true;
 				}
-				if (SPPlayerManager.beginPlayerGame(player))
+				if (SPPlayerManager.beginPlayerGame(player, gameNum))
 				{
-					getServer().dispatchCommand(player, "spleef join game");
+					getServer().dispatchCommand(player, "spleef join " + gameID);
 					getServer().broadcastMessage(ChatColor.GREEN + "[SPLEEF] " + player.getName() + " joined the Spleef game");
 				}
 				return true;
@@ -99,12 +113,12 @@ public class SPplus extends JavaPlugin {
 					player.sendMessage(ChatColor.RED + "You can't start a game you're not playing in!");
 					return true;
 				}
-				if (SPPlayerManager.isRunningGame())
+				if (SPPlayerManager.isRunningGame(gameNum))
 				{
 					player.sendMessage(ChatColor.RED + "The Spleef game has already started");
 					return true;
 				}
-				if (!SPPlayerManager.hasPlayers())
+				if (!SPPlayerManager.hasPlayers(gameNum))
 				{
 					player.sendMessage(ChatColor.RED + "You can't start an empty game!");
 					return true;
@@ -118,16 +132,16 @@ public class SPplus extends JavaPlugin {
 						return true;
 					}
 				}
-				getServer().dispatchCommand(player, "spleef reset game");
-				SPPlayerManager.startGame();
+				getServer().dispatchCommand(player, "spleef reset " + gameID);
+				SPPlayerManager.startGame(gameNum);
 				BukkitScheduler scheduler = getServer().getScheduler();
 				getServer().broadcastMessage(ChatColor.GREEN + "[SPLEEF] " + player.getName() + " started the Spleef countdown");
 				// Time delay is in ticks, 20 TPS
 				for (i=1; time > 0; time--, i++)
 				{
-					scheduler.scheduleSyncDelayedTask(this, new GameStart(player, time), i * 20L);
+					scheduler.scheduleSyncDelayedTask(this, new GameStart(player, time, gameID), i * 20L);
 				}
-				scheduler.scheduleSyncDelayedTask(this, new GameStart(player, 0), i * 20L);
+				scheduler.scheduleSyncDelayedTask(this, new GameStart(player, 0, gameID), i * 20L);
 				return true;
 			} else if (subCmd.equalsIgnoreCase("leave"))
 			{
@@ -141,21 +155,21 @@ public class SPplus extends JavaPlugin {
 				return true;
 			} else if (subCmd.equalsIgnoreCase("reset"))
 			{
-				if (SPPlayerManager.isRunningGame())
+				if (SPPlayerManager.isRunningGame(gameNum))
 				{
 					player.sendMessage(ChatColor.RED + "You can't reset during a Spleef game");
 					return true;
 				}
-				getServer().dispatchCommand(player, "spleef reset game");
+				getServer().dispatchCommand(player, "spleef reset " + gameID);
 				return true;
 			} else if (subCmd.equalsIgnoreCase("updatefield"))
 			{
-				if (SPPlayerManager.isRunningGame())
+				if (SPPlayerManager.isRunningGame(gameNum))
 				{
 					player.sendMessage(ChatColor.RED + "You don't REALLY want to save the field during the game, do you?");
 					return true;
 				}
-				GameManager.getGame("game").getArena().saveState();
+				GameManager.getGame(gameID).getArena().saveState();
 				player.sendMessage(ChatColor.RED + "Field successfully updated");
 				return true;
 			} else if (subCmd.equalsIgnoreCase("cancel"))
