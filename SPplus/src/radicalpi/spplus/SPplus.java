@@ -69,7 +69,7 @@ public class SPplus extends JavaPlugin {
 		{
 			String gameID = null;
 			int gameNum = 0;
-			if (command.getName().equalsIgnoreCase("sp2"))
+			if (command.getName().equalsIgnoreCase("spl2"))
 			{
 				gameID = "game2";
 				gameNum = 2;

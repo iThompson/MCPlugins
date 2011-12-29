@@ -5,9 +5,9 @@ author: RadicalPi
 description: Enhancements to the SpleefExtreme plugin, mainly clears creative mode
 
 commands:
-   sp:
+   spl:
       description: Spleef Front-end
       usage: /<command> (join|start|leave|cancel)
-   sp2:
+   spl2:
       description: Spleef for second arena
       usage: /<command> (join|start|leave|cancel)
