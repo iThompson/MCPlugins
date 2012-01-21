@@ -1,0 +1,39 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+  <groupId>org.pegasus</groupId>
+  <artifactId>mc-plugins</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>Plugins</name>
+  <description>Master POM for minecraft server</description>
+  <packaging>pom</packaging>
+  
+  <modules>
+    <module>GMode</module>
+  </modules>
+  
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>2.4</version>
+        <configuration>
+          <artifactItems>
+            <artifactItem>
+              <groupId>org.pegasus.minecraft</groupId>
+              <artifactId>GMode</artifactId>
+              <version>0.0.1-SNAPSHOT</version>
+              <type>jar</type>
+              <destFileName>GMode.jar</destFileName>
+            </artifactItem>
+          </artifactItems>
+          <overWriteIfNewer>true</overWriteIfNewer>
+          <outputDirectory>C:\Users\Ian\Documents\CraftBukkit Server\plugins</outputDirectory>
+          <!-- other configurations here -->
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  
+</project>

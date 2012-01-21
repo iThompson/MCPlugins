@@ -1,4 +1,4 @@
-package radicalpi.gmode;
+package org.pegasus.minecraft.gmode;
 
 import java.util.logging.Logger;
 
@@ -15,13 +15,11 @@ public class GMode extends JavaPlugin {
 	
 	private PluginDescriptionFile pdf;
 
-	@Override
 	public void onDisable() {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void onEnable() {
 		pdf = getDescription();
 
