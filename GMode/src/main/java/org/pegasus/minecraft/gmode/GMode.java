@@ -16,8 +16,7 @@ public class GMode extends JavaPlugin {
 	private PluginDescriptionFile pdf;
 
 	public void onDisable() {
-		// TODO Auto-generated method stub
-
+		log.info("[" + pdf.getName() + "] Disabled");
 	}
 
 	public void onEnable() {
