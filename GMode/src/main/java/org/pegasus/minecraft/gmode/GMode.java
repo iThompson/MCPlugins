@@ -1,5 +1,7 @@
 package org.pegasus.minecraft.gmode;
 
+// Testing auto-load of plugins
+
 import java.util.logging.Logger;
 
 import org.bukkit.GameMode;
